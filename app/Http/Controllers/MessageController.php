@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
-use App\Models\Program;
+use App\Events\NewMessage;
 
 class MessageController extends Controller
 {
@@ -35,6 +35,10 @@ class MessageController extends Controller
                 'message' => $validData['message'],
                 'date' => $validData['date']
             ]);
+
+
+            // Emite el mensaje a través del canal WebSocket
+            broadcast(new NewMessage($message));
 
             return response()->json([
                 'message' => 'Mensaje creado',
@@ -73,8 +77,11 @@ class MessageController extends Controller
                 'program_id' => $request->input('program_id'),
                 'message' => $request->input('message'),
                 'date' => $request->input('date'),
-                'parent_id' => $messageId, // Establecer el parent_id para relacionar la respuesta al mensaje original
+                'parent_id' => $messageId, 
             ]);
+
+            // Emite la respuesta a través del canal WebSocket
+            broadcast(new NewMessage($responseMessage));
 
             return response()->json(['message' => 'Respuesta creada con éxito', 'data' => $responseMessage], 201);
         } catch (\Throwable $th) {

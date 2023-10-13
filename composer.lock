@@ -8292,7 +8292,6 @@
             "funding": [
                 {
                     "url": "https://phpunit.de/sponsors.html",
-                    php artisan migrate                    "type": "custom"
                     "type": "custom"
                 },
                 {

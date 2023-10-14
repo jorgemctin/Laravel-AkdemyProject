@@ -152,45 +152,45 @@ class MessageController extends Controller
         }
     }
 
-    public function editResponse(Request $request, $id)
-    {
-        try {
-            $validator = Validator::make($request->all(), [
-                'user_id' => 'required',
-                'program_id' => 'required',
-                'message' => 'required',
-                'date' => 'required'
-                // Agrega aquí otras reglas de validación según tus necesidades
-            ]);
+    // public function editResponse(Request $request, $id)
+    // {
+    //     try {
+    //         $validator = Validator::make($request->all(), [
+    //             'user_id' => 'required',
+    //             'program_id' => 'required',
+    //             'message' => 'required',
+    //             'date' => 'required'
+    //             // Agrega aquí otras reglas de validación según tus necesidades
+    //         ]);
 
-            if ($validator->fails()) {
-                return response()->json($validator->errors(), 400); // 400 Bad Request
-            }
+    //         if ($validator->fails()) {
+    //             return response()->json($validator->errors(), 400); // 400 Bad Request
+    //         }
 
-            $validData = $validator->validated();
+    //         $validData = $validator->validated();
 
-            $message = Message::find($id); // Utiliza Message en lugar de Response
+    //         $message = Message::find($id); // Utiliza Message en lugar de Response
 
-            if (!$message) {
-                return response()->json([
-                    'message' => 'Mensaje no encontrado'
-                ], 404); // 404 Not Found
-            }
+    //         if (!$message) {
+    //             return response()->json([
+    //                 'message' => 'Mensaje no encontrado'
+    //             ], 404); // 404 Not Found
+    //         }
 
-            // Verificar la autorización para editar
-            if ($message->user_id !== Auth::id()) {
-                return response()->json([
-                    'message' => 'No tienes permisos para editar este mensaje'
-                ], 403); // 403 Forbidden
-            }
-        } catch (\Throwable $th) {
-            Log::error('Error al actualizar mensaje: ' . $th->getMessage());
+    //         // Verificar la autorización para editar
+    //         if ($message->user_id !== Auth::id()) {
+    //             return response()->json([
+    //                 'message' => 'No tienes permisos para editar este mensaje'
+    //             ], 403); // 403 Forbidden
+    //         }
+    //     } catch (\Throwable $th) {
+    //         Log::error('Error al actualizar mensaje: ' . $th->getMessage());
 
-            return response()->json([
-                'message' => 'Error al actualizar mensaje'
-            ], 500); // 500 Internal Server Error
-        }
-    }
+    //         return response()->json([
+    //             'message' => 'Error al actualizar mensaje'
+    //         ], 500); // 500 Internal Server Error
+    //     }
+    // }
 
     public function getAllMessages()
     {

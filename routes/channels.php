@@ -18,7 +18,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 
-Broadcast::channel('chat.{roomId}', function ($user, $roomId) {
+Broadcast::channel('chat.{programId}', function ($user, $programId) {
     // Verifica si el usuario está autenticado
     if ($user) {
         return ['id' => $user->id, 'name' => $user->name];

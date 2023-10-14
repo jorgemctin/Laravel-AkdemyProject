@@ -47,7 +47,9 @@ Route::get('/userConvo/getAllInscriptions', [UserConvocationController::class, '
 Route::get('/program/getAll', [ProgramController::class, 'getAllPrograms']);
 
 //MESSAGE CONTROLLER
-Route::post('/message/create', [MessageController::class, 'createMessage'])->middleware(['auth:sanctum']);
+
+// AGREGAR EL ID AL MESSAGES CREAR '/message/{id}/create'
+Route::post('/message/{program_id}/create', [MessageController::class, 'createMessage'])->middleware(['auth:sanctum']);
 Route::put('/message/update/{id}', [MessageController::class, 'editMessage'])->middleware(['auth:sanctum']);
 Route::get('/message/getAll', [MessageController::class, 'getAllMessages'])->middleware(['auth:sanctum']);
 Route::delete('/message/delete/{id}', [MessageController::class, 'deleteMessage'])->middleware(['auth:sanctum']);

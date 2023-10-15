@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "laravel-echo": "^1.15.3",
+        "pusher-js": "^8.3.0",
         "socket.io-client": "^4.7.2"
     }
 }

@@ -9,7 +9,6 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Message;
 
 class NewMessage implements ShouldBroadcast
 {
@@ -21,7 +20,7 @@ class NewMessage implements ShouldBroadcast
      *
      * @param mixed $message
      */
-    public function __construct( Message $message)
+    public function __construct( $message)
     {
         $this->message = $message;
     }

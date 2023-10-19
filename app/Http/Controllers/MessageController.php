@@ -13,7 +13,7 @@ use App\Events\NewMessage;
 class MessageController extends Controller
 {
     //
-    public function createMessage(Request $request)
+    public function createMessage(Request $request, $program_id)
     {
         try {
             $validator = Validator::make($request->all(), [
@@ -31,7 +31,7 @@ class MessageController extends Controller
 
             $message = Message::create([
                 'user_id' => $validData['user_id'],
-                'program_id' => $validData['program_id'],
+                'program_id' => $program_id,
                 'message' => $validData['message'],
                 'date' => $validData['date']
             ]);

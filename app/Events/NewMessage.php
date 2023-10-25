@@ -21,7 +21,7 @@ class NewMessage implements ShouldBroadcast
      *
      * @param mixed $message
      */
-    public function __construct( Message $message)
+    public function __construct(Message $message)
     {
         $this->message = $message;
     }
@@ -34,5 +34,14 @@ class NewMessage implements ShouldBroadcast
     public function broadcastOn()
     {
         return new Channel('chat.' . $this->message->program_id);
+    }
+    /**
+     * Get the name of the event for Pusher.
+     *
+     * @return string
+     */
+    public function broadcastAs()
+    {
+        return 'NewMessage'; 
     }
 }

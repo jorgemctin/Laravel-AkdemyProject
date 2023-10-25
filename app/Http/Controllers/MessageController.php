@@ -39,7 +39,7 @@ class MessageController extends Controller
 
             // Emite el mensaje a través del canal WebSocket
             broadcast(new NewMessage($message));
-
+            Log::info('Evento NewMessage emitido:', ['message' => $message]);
             return response()->json([
                 'message' => 'Mensaje creado',
                 'data' => $message

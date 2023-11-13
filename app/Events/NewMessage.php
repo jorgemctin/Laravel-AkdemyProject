@@ -33,6 +33,9 @@ class NewMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        // error_log('Emitiendo evento NewMessage: ' . json_encode($this->message));
+        // info('Emitiendo evento NewMessage: ' . json_encode($this->message));
+
         return new Channel('chat.' . $this->message->program_id);
     }
     /**
